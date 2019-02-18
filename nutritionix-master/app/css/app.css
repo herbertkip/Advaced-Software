@@ -1,0 +1,72 @@
+md-card md-card-title md-card-title-text {
+    margin-right: 25px;
+}
+
+/**
+ * Hide when Angular is not yet loaded and initialized
+ */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+.menu .md-button {
+    border-radius: 0;
+    display: block;
+    vertical-align: middle;
+    align-items: inherit;
+    line-height: 40px;
+    margin: 0;
+    overflow: hidden;
+    padding: 20px 16px;
+    text-align: left;
+    text-decoration: none;
+    white-space: normal;
+    width: 100%;
+}
+
+.menu {
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu i {
+    vertical-align: middle;
+}
+
+.already-in-pantry {
+    background: #dcffdc;
+}
+.md-list-item-text {
+    padding: 12px 0;
+}
+
+md-list md-list-item .md-list-item-inner .md-list-item-text h3.title {
+    font-weight: 500; !important;
+}
+
+.md-list-item-text > section {
+    border-top: 1px solid #C3C3C3;
+    margin: 20px;
+    padding-top: 10px;
+}
+
+md-chips.md-default-theme .md-chips, md-chips .md-chips {
+    box-shadow: none;
+}
+
+.md-button.md-default-theme.md-warn, .md-button.md-green {
+    color: #4CAF50;
+}
+
+body > div.layout-column.flex > md-content > div > section > md-card > form > div > md-autocomplete {
+    height: 72px;
+}
+
+body > div.layout-column.flex > md-content > div > section > md-card > form > div > section > md-input-container {
+    margin: 16px 0 0 20px;
+}
+
+body > div.layout-column.flex > md-content > div > section > md-card > form > div > section > md-switch {
+    padding-left: 16px;
+}

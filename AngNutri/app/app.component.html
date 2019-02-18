@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="header d-flex flex-row">
+    <img
+      class="img-fluid"
+      src="http://nutritioninmotion.com/wp-content/uploads/2017/08/nutrition_icon.png"
+      alt=""
+    />
+    <h1 class="display-1">Nutritionix Testing Suite</h1>
+  </div>
+  <form (submit)="onSubmitForm(form)" #form="ngForm">
+    <input
+      class="form-control"
+      name="recipe"
+      type="text"
+      [(ngModel)]="recipeInput"
+    />
+    <button class="btn btn-primary">Submit</button>
+  </form>
+
+  <div class="results" id="results">
+    <app-food *ngFor="let food of foods" [food]="food"></app-food>
+  </div>
+</div>

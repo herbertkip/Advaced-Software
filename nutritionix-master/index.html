@@ -1,0 +1,61 @@
+<html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+</head>
+<body style="background-color:powderblue;">
+<h1> ASE ICP3 - Using REST API </h1>
+<!-- This Code created a model called ItemName and COntroller named RestApIctrl-->
+<div ng-app="RestApI" ng-controller="RestApIctrl">
+    Search: <input type="text" ng-model="Itemname"/>
+    <button id="btn" ng-click="getDetails()" style="background-color:Orange;"> Show Calories, Weight</button>
+    <button id="btn" ng-click="getSpeech()" style="background-color:Orange;"> Speak Out</button>
+    <br/>
+    <br/>
+    <div class="RestModule">
+        <!-- This displays data in the form of table responsible for viewing data-->
+        <table style="width:100%">
+            <tr>
+                <th>Item</th>
+                <th>#Calories</th>
+                <th>Serving_Weight_Gms</th>
+            </tr>
+            <tr>
+                <td>{{Itemname}}</td>
+                <td>{{currentcalories}}</td>
+                <td>{{currentweight}}</td>
+            </tr>
+        </table>
+        <img src="https://media.istockphoto.com/photos/friends-happiness-enjoying-dinning-eating-concept-picture-id515741052?s=2048x2048" alt="Food and Recepie">
+    </div>
+</div>
+
+
+<script>
+    angular.module('RestApI',[])
+        .controller('RestApIctrl', function($scope, $http) {
+            $scope.getDetails = function() {
+                // This is the call to nutritionix API by sending Authentication details of ID and appKey
+                $http.get('https://api.nutritionix.com/v1_1/search/' +$scope.Itemname + '?results=0:1&fields=*&appId=36b75eab&appKey=b74353ae344fbbb74b40279726c9d443').success(function(data) {
+                    console.log(data);
+                    calories = data.hits[0].fields.nf_calories;
+                    weight = data.hits[0].fields.nf_serving_weight_grams;
+                    console.log(calories);
+                    console.log(weight);
+                    $scope.currentcalories = calories;
+                    $scope.currentweight = weight;
+                })
+            }
+            $scope.getSpeech = function() {
+                // This is the code for calling WATSON API with username and Passoword that is generated, this way client is authenticating to server
+                var audio = new Audio('https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?username=%2071a52567-27be-43c3-a8cf-354470843974&password=%203PtNe8RNavwF&text='+ $scope.Itemname);
+                audio.play();
+            }
+        });
+</script>
+</body>
+</html>

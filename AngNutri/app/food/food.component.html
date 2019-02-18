@@ -1,0 +1,21 @@
+<div class="card mx-auto">
+  <div class="card-header">
+    <h4>{{ food.name }}</h4>
+  </div>
+  <div class="card-body">
+    <img [src]="food.photo || ''" class="img-fluid" alt="" />
+    <p>Calories: {{ food.calories }}kcal</p>
+    <div class="macros">
+      <ul class="list-group" id="macroCategories">
+        <li class="list-group-item">Carbs</li>
+        <li class="list-group-item">Protein</li>
+        <li class="list-group-item">Fat</li>
+      </ul>
+      <ul class="list-group" id="macroResults">
+        <li class="list-group-item">{{ food.carbs }}</li>
+        <li class="list-group-item">{{ food.protein }}</li>
+        <li class="list-group-item">{{ food.fat }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

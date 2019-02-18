@@ -1,0 +1,74 @@
+<section layout="column" class="md-padding">
+    <md-card class="md-whiteframe-1dp">
+        <form ng-submit="$event.preventDefault()" name="searchForm">
+            <div layout-gt-sm="column">
+                <md-autocomplete flex
+                                 md-no-cache="false"
+                                 md-input-name="autoCompleteField"
+                                 md-search-text="autoCompleteSearchText"
+                                 md-selected-item="selectedItem"
+                                 md-selected-item-change="selectedItemChange(selectedItem)"
+                                 md-items="item in autoCompleteQuerySearch(autoCompleteSearchText)"
+                                 md-item-text="item.text"
+                                 md-input-minlength="1"
+                                 class="md-padding"
+                                 placeholder="Please search food here">
+                    <md-item-template>
+                        <span md-highlight-text="autoCompleteSearchText">{{ item.text }}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No food matching ' {{ autoCompleteSearchText }} ' were found.
+                    </md-not-found>
+                    <div ng-messages="searchForm.autoCompleteField.$error" ng-if="searchForm.autoCompleteField.$touched">
+                        <div ng-message="minlength">Your entry is not long enough.</div>
+                    </div>
+                </md-autocomplete>
+                <section class="filter" layout="row" layout-align="start center" flex>
+                    <md-switch md-invert class="md-primary" aria-label="Filter" ng-model="filter.activated">
+                        Filter
+                    </md-switch>
+                    <md-input-container>
+                        <label>Minimum calorie (kcal)</label>
+                        <input ng-disabled="!filter.activated" ng-model="filter.min" type="number" step="0.1">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Maximum calorie (kcal)</label>
+                        <input ng-disabled="!filter.activated" ng-model="filter.max" type="number" step="0.1">
+                    </md-input-container>
+                    <md-button class="md-primary md-icon-button" ng-click="search()"><i class="material-icons">search</i></md-button>
+                </section>
+            </div>
+        </form>
+    </md-card>
+    <md-content md-scroll-y flex layout="row" layout-align="center" layout-wrap ng-cloak="">
+        <md-card flex ng-if="selectedItem">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">You searched "{{ selectedItem.text }}"</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <i class="material-icons">search</i>
+                </md-card-title-media>
+            </md-card-title>
+            <md-card-content>
+                <md-list flex>
+                    <md-list-item ng-class="isAlreadyInPantry(item) ? 'already-in-pantry' : ''" layout="row" class="md-3-line" ng-repeat="item in foundResults" ng-click="showItemInfo($event, item)">
+                        <div class="md-list-item-text" flex layout="column">
+                            <p><h3>{{ item.fields.item_name }}</h3></p>
+                            <p><h4>{{ item.fields.brand_name }}</h4></p>
+                            <md-chips>
+                                <md-chip class="md-focused">{{ item.fields.nf_calories }} kcal</md-chip>
+                            </md-chips>
+                            <p ng-if="isAlreadyInPantry(item)"><i>Already in the pantry</i></p>
+                        </div>
+                        <md-button class="md-secondary md-icon-button" ng-click="addItem($event, item)"><i class="material-icons">add</i></md-button>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-card-content>
+        </md-card>
+        <section layout="row" layout-padding layout-align="center center" layout-fill ng-if="paging.total">
+            <pagination ym-pages="paging.total" ym-page-changed="search()" ym-nbr-page-shown="4" ym-current-page="paging.current"></pagination>
+        </section>
+    </md-content>
+</section>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+</head><br/><br/><br/><br/><br/><br/>
+<h1 align="center"> LAB 3 Nutritionix API </h1><br/><br/>
+<!-- This Code created a model called ItemName and COntroller named RestApIctrl-->
+<div align="center" ng-app="RestApI" ng-controller="RestApIctrl">
+    <h2>Search food here:</h2> <h5> <input type="text" style="" ng-model="Itemname"/></h5> <br/>
+    <button id="btn" ng-click="getDetails()" > Diplay Calories and Weight</button>
+    <button id="btn" ng-click="getSpeech()" > Hear what you searched</button>
+    <br/>
+    <br/>1
+    <div class="RestModule">
+        <!-- This displays data in the form of table responsible for viewing data-->
+        <div align="center" style="overflow-x:auto;">
+            <style>
+                table {
+                    width: 50%;
+                }
+
+                th {
+                    height: 50px;
+                }
+                th {
+                    text-align: center;
+                }
+                th, td {
+                    padding: 15px;
+                    text-align: left;
+                }
+                th, td {
+                    border-bottom: 1px solid #ddd;
+                }
+                h1 {
+                    color: red;
+                }
+                h4 {
+                    color: blue;
+                                    }
+                table {
+                    width: 50%;
+                }
+            </style>
+
+
+        <table>
+            <tr>
+                <th><h3>Item</h3></th>
+                <th><h3>No of Calories (KCal)</h3></th>
+                <th><h3>Weight (Grams)</h3</th>
+            </tr>
+            <tr>
+                <td><h4>{{Itemname}}</h4></td>
+                <td><h4>{{currentcalories}}</h4></td>
+                <td><h4>{{currentweight}}</h4></td>
+            </tr>
+        </table>
+        </div>
+
+</div>
+
+
+<script>
+    angular.module('RestApI',[])
+        .controller('RestApIctrl', function($scope, $http) {
+            $scope.getDetails = function() {
+                // Authentication of calling Nutritionix API- Coverts text to speech
+                $http.get('https://api.nutritionix.com/v1_1/search/' +$scope.Itemname + '?results=0:1&fields=*&appId=36b75eab&appKey=b74353ae344fbbb74b40279726c9d443').success(function(data) {
+                    console.log(data);
+                    calories = data.hits[0].fields.nf_calories;
+                    weight = data.hits[0].fields.nf_serving_weight_grams;
+                    console.log(calories);
+                    console.log(weight);
+                    $scope.currentcalories = calories;
+                    $scope.currentweight = weight;
+                })
+            }
+            $scope.getSpeech = function() {
+                // Authentication of calling IBM Watson - Coverts text to speech
+                var audio = new Audio('https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?username=f61d1286-72ec-4d67-a0a2-16969a62acac&password=4AmGC8jSSy5G&text='+ $scope.Itemname);
+                audio.play();
+            }
+        });
+</script>
+</body>
+    <img src="https://www.foodsforfeelings.com/wp-content/uploads/2013/11/Foods-for-Feelings_footer.jpg"
+</html>
+</html>

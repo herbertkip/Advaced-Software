@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<head>
+    <title>LAB 3 Login and Sigup</title>
+    </br></br></br></br></br></br></br><h1 align="center" STYLE="color: #FFFFFF"> LAB 3: ASE: Login and Sigup</h1>
+</head>
+<style>
+
+    body {
+        background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0, 0, 0, 0.09));
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .login-page {
+        width: 360px;
+        padding: 10% 0 0;
+        margin: auto;
+    }
+
+    .form {
+        position: relative;
+        z-index: 1;
+        background: rgba(25, 34, 64, 0.8);
+        max-width : 360px ;
+        margin: 0 auto 100px;
+        padding: 45px;
+        text-align : center ;
+    }
+
+    .form input {
+        font-family: "Roboto", san-serif;
+        outline: 1;
+        background: #f2f2f2;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    .form button {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background : #4CAF50 ;
+        width: 100%;
+        border: 0;
+        padding: 15px;
+        color: #FFFFFF;
+        font-size:14px;
+        cursor: pointer;
+    }
+
+    .form button:hover, .form button:active {
+        background: #43A047;
+    }
+
+    .form .message {
+        margin: 15px 0 0;
+        color: aliceblue;
+        font-size: 12px;
+    }
+
+    .form .message a{
+        color: #4CAF50;
+        text-decoration : none ;
+    }
+
+    .form .register-form {
+        display: none;
+    }
+</style>
+<body>
+<div class="login-page">
+
+    <div class="form">
+
+        <form class="register-form">
+            <input id="name12"type="text" placeholder="user name" value=""/>
+            <input id="pw" type="text" placeholder="password" value=""/>
+            <button id="rgstr_btn" type="submit" value="get Account" onClick="store()">Create</button>
+
+            <p class="message">Do you already have an account? <a href="#">Login</a></p>
+        </form>
+        <form class="login-form">
+            <input id="userName" type="text" placeholder="user name"/>
+            <input id="userPw" type="password" placeholder="password"/>
+            <button id="login_btn" type="submit" value="Login" onClick="check()">Login</button>
+            <p class="message">New user? <a href="#">Register</a></p>
+        </form>
+    </div>
+
+</div>
+
+
+
+
+<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+<script type="text/javascript" language="javascript" src="login.js"></script>
+<script>
+    // Name and Password from the register-form
+    var name12 = document.getElementById('name12');
+    var pw = document.getElementById('pw');
+
+    // storing input from register-form
+    function store() {
+        localStorage.setItem('name12', name12.value);
+        localStorage.setItem('pw', pw.value);
+    }
+
+    // check if stored data from register-form is equal to entered data in the   login-form
+    function check() {
+
+        // stored data from the register-form
+        var storedName = localStorage.getItem('name12');
+        var storedPw = localStorage.getItem('pw');
+
+        // entered data from the login-form
+        var userName = document.getElementById('userName');
+        var userPw = document.getElementById('userPw');
+
+        // check if stored data from register-form is equal to data from login form
+        if(userName.value == storedName && userPw.value == storedPw) {
+            window.open("nutritionixapi.html");
+            //alert('You are loged in.');
+        }else {
+            alert('ERROR.');
+        }
+    }
+    $('.message a').click(function(){
+        $('form').animate({height: "toggle", opacity:"toggle"}, "slow");
+    });
+
+</script>
+</body>
+</html>

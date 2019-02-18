@@ -1,0 +1,38 @@
+<md-dialog aria-label="Quantity of {{ item.item_name }}">
+    <form ng-cloak>
+        <md-dialog-content>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>How much {{ item.item_name }} is desired</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                        <i class="material-icons">close</i>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-content class="md-padding">
+                <md-input-container  md-no-float class="md-prompt-input-container md-input-has-placeholder md-input-has-value">
+                    <label>Quantity</label>
+                    <input required
+                           type="number"
+                           step="1"
+                           aria-label="Quantity"
+                           name="quantity"
+                           ng-model="quantity"
+                           min="0"
+                           max="9999"
+                    />
+                </md-input-container>
+            </md-content>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-secondary md-cancel-button" ng-transclude="" ng-click="cancel()">
+                Cancel
+            </md-button>
+            <md-button class="md-primary" ng-transclude="" ng-click="answer()">
+                Set
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

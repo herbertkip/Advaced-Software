@@ -1,0 +1,28 @@
+.card {
+  margin: 1em 0 1em 0;
+}
+div {
+  display: flex;
+  flex-direction: column;
+  width: 18em;
+
+  h4,
+  p {
+    text-align: center;
+  }
+
+  img {
+    height: 6em;
+    margin: 0 auto;
+  }
+  .macros {
+    display: grid;
+    width: 100%;
+    grid-template-columns: auto auto;
+    margin: auto;
+    justify-content: center;
+    .macroCategories {
+      text-align: left;
+    }
+  }
+}
