@@ -1,0 +1,61 @@
+ASE LAB 3 Team 4 Spring 2019
+
+TEAM 4 Class ID 3 : Chepsoy, Herbert Kiplagat Class ID 20: Oguntimehin, Josh Joshua
+
+ASE LabExercise-4(Pair Programming)Guidelines:
+
+Should include both wiki link and a 2-minute video link about the work done
+
+Create a simple ionic application using any of the ionic templates [tabs, sidemenu]Make changes to the template to display1.Login and Registration Activities. 
+The application must have a sign up and login activities.2.A Main pageThe Page should be Mashup of at least Two Web Services (refer to the web services from the spreadsheet). 
+One of them should be from the list of knowledge/Machine learning/AI services and that you haven’t used in your previous work
+3.Testing
+
+Write at least 3-unit test cases related to your applicationDeploy the application to android device/ web/ ionic lab 
+Ionic simulator: http://lab.ionic.io/old.html
+
+ReferencesFramework Documentation:https://ionicframework.com/docs/v1/api/
+Ionic-1
+
+ Tutorials:https://www.youtube.com/watch?v=0jamhGf-8ww&list=PLYxzS__5yYQljbuGjaeugpqs9U07gS5P5&index=1
+
+ 
+ Sign up and login activities
+ 
+ The application allows you so sign-in and and sign-up
+ 
+ Steps to sign in
+ 
+ Sign-up with a unique usern name and password - This data is stored locally
+ 
+ Sign -in by enter your user name and password then click click on login
+ 
+ The login button trigger the login operation
+ 
+ 
+ Web Service
+ 
+ Used moviedb api
+ 
+ https://developers.themoviedb.org/3
+ 
+ This is a database that can be utilised by developers. 
+ 
+ This api acts as a rest api for movie data 
+ 
+ The movies tab in the ionic application allows you to interface 
+ 
+ Use the search bar to search for a movie and its's details are parsed. 
+ 
+ 
+ Testing
+ 
+ Karma and Jasmine 
+ 
+ We used jasmine testing to test the application
+ 
+ Test case action on button click trigger
+ 
+ import testting 
+ 
+ Testing web service data retrival. 
