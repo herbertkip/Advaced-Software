@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Firebase Social Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button icon-right (click)="facebookLogin()">
+    Facebook Login
+    <ion-icon name="logo-facebook"></ion-icon>
+  </button>
+  <button ion-button icon-right (click)="googleLogin()">
+    Google Login
+    <ion-icon name="logo-google"></ion-icon>
+  </button>
+
+  <button ion-button icon-right (click)="twitterLogin()">
+    Twitter Login
+    <ion-icon name="logo-twitter"></ion-icon>
+  </button>
+</ion-content>

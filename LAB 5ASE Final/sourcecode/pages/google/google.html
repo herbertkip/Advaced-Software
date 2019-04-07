@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Google Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="isGoogleLoggedIn; else googleLogin">
+    <h1>Google</h1>
+    <h2>Hi, {{userProfile.displayName }}</h2>
+    <p>
+      Email: {{userProfile.email}}
+    </p>
+    <p>
+      <img src="{{userProfile.photoURL}}" width="100" alt="{{userProfile.displayName }}" />
+    </p>
+    <p>
+      <button ion-button icon-right (click)="googleLogout()">
+        Google Logout
+      </button>
+    </p>
+  </div>
+  <ng-template #googleLogin>
+    <button ion-button icon-right (click)="loginUser()">
+      Google Login
+      <ion-icon name="logo-googleplus"></ion-icon>
+    </button>
+  </ng-template>
+
+</ion-content>

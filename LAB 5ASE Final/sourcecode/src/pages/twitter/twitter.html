@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Twitter Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="isTwitterLoggedIn; else twitterLogin">
+    <h1>Twitter</h1>
+    <h2>Hi, {{userProfile.displayName }}</h2>
+    <p>
+      Email: {{userProfile.email}}
+    </p>
+    <p>
+      <img src="{{userProfile.photoURL}}" width="100" alt="{{userProfile.displayName }}" />
+    </p>
+    <p>
+      <button ion-button icon-right (click)="twitterLogout()">
+        Twitter Logout
+      </button>
+    </p>
+  </div>
+  <ng-template #twitterLogin>
+    <button ion-button icon-right (click)="loginUser()">
+      Twitter Login
+      <ion-icon name="logo-twitter"></ion-icon>
+    </button>
+  </ng-template>
+
+</ion-content>
